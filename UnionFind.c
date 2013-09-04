@@ -84,10 +84,26 @@ void Union(int p, int q) {
 
 	else if(parent_p == NULL && parent_q != NULL) {
 		id[p] = parent_q;
+		parent_q->elements_attached += 1;
+		
+		Node *temp = parent_q->next;
+		
+		while(temp != NULL) {
+			temp->elements_attached += 1;
+			temp = temp -> next;
+		}
 	}
 
 	else if (parent_q == NULL && parent_p != NULL) {
 		id[q] = parent_p;
+		parent_p->elements_attached += 1;
+		
+		Node *temp = parent_p->next;
+		
+		while(temp != NULL) {
+			temp->elements_attached += 1;
+			temp = temp -> next;
+		}
 	}
 	
 	else if (parent_p != parent_q) {
